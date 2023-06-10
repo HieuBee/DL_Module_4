@@ -41,6 +41,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -49,6 +52,7 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectId" id="2QsORJNQNzZPuVBeEvx65iTTBkp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -57,7 +61,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Demo/cs1/demo_spring_mvc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../demo_spring_controller/demo_spring_mvc" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -164,6 +168,7 @@
       <workItem from="1686138815610" duration="3772000" />
       <workItem from="1686143847275" duration="47000" />
       <workItem from="1686144064725" duration="417000" />
+      <workItem from="1686320566348" duration="43000" />
     </task>
     <servers />
   </component>
