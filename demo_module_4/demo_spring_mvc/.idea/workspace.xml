@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa203bf8-5856-46ba-a349-f3c57f7f65db" name="Changes" comment="" />
+    <list default="true" id="aa203bf8-5856-46ba-a349-f3c57f7f65db" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Exercise/cs1/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise/cs1/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise/cs4/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise/cs4/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise/cs4/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise/cs4/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise/cs4/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise/cs4/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise/cs4/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise/cs4/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise/cs4/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise/cs4/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise/cs4/build/libs/cs4-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise/cs4/build/libs/cs4-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise/cs4/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise/cs4/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise/cs4/src/main/webapp/WEB-INF/dispatcher-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise/cs4/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,7 +71,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../demo_spring_controller/demo_spring_mvc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Exercise" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -169,6 +179,7 @@
       <workItem from="1686143847275" duration="47000" />
       <workItem from="1686144064725" duration="417000" />
       <workItem from="1686320566348" duration="43000" />
+      <workItem from="1687356799176" duration="14000" />
     </task>
     <servers />
   </component>
