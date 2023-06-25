@@ -11,7 +11,7 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal" style="display: inline-block">
     Add new Product
 </button>
-<form th:object="${product}" th:action="@{/product/search}" method="post">
+<form th:object="${product}" th:action="@{/product/search}" method="post" style="display: inline-block">
     <input type="search" placeholder="Input here ....." th:field="${product.name}">
     <input type="submit" value="Search">
 </form>
