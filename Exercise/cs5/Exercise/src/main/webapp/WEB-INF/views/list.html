@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Picture of day</title>
+</head>
+<body>
+<div class="container">
+    <img id="img-of-the-day" style="height: 200px; width: 300px">
+    <h3 th:if="${error!=null}" th:text="${error}"></h3>
+    <div>
+        <form th:object="${feedback}" th:action="@{/picture/add}" method="post">
+            <table class="table">
+                <tbody>
+                <tr class="col">
+                    <td>Rate</td>
+                    <td>
+                        <select th:field="*{rate}">
+                            <option th:value="1" th:text="1"></option>
+                            <option th:value="2" th:text="2"></option>
+                            <option th:value="3" th:text="3"></option>
+                            <option th:value="4" th:text="4"></option>
+                            <option th:value="5" th:text="5"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="col">
+                    <td>Author</td>
+                    <td><input th:type="text" th:field="*{author}"/></td>
+                </tr>
+                <tr class="col">
+                    <td>Feedback</td>
+                    <td><input th:type="text" th:field="*{content}"/></td>
+                </tr>
+                <tr class="col">
+                    <td>
+                        <input type="hidden" th:id="date" th:name="date"
+                               th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"/>
+                    </td>
+                    <td><input type="submit" value="Send"></td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+    <div>
+        <h3>List of feedback</h3>
+        <table class="table" th:each="f : ${feedbacks}">
+            <tbody>
+            <tr class="col" >
+                <td th:text="${f.rate}"></td>
+                <td th:text="${f.content}"></td>
+            </tr>
+            <tr>
+                <td th:text="|${f.liked} likes|"></td>
+                <td>
+                    <form th:object="${feedback}" th:action="@{/picture/update}" method="post">
+                        <input type="hidden" th:id="id" th:name="id" th:value="${f.id}"/>
+                        <input type="submit" value="Like"/>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+<script>
+    let query = 'https://api.nasa.gov/planetary/apod?api_key=1s5RPwoC0UahJdcMT9fePbsDSkfHgcjWi9Y3sEX7';
+    let request = new XMLHttpRequest();
+    request.open('GET', query);
+    request.onload = function() {
+        if (request.status === 200) {
+            let response = JSON.parse(request.responseText);
+            document.getElementById('img-of-the-day').setAttribute('src', response.url);
+        }
+    };
+    request.send();
+</script>
+</html>
