@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        svg {
+            vertical-align: bottom;
+        }
+
+        .img-center {
+            background-image: url("../5660583.jpg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+        }
+        .img-center>span {
+            margin-bottom: auto;
+            margin-top: auto;
+        }
+        .btn-search {
+            background: #a68072;
+            color: white;
+        }
+        .btn-search:hover {
+            background: #e4c0b9;
+            color: black;
+        }
+        .btn-create {
+            background: #a68072;
+            color: white;
+            padding-left: 20px;
+        }
+        .btn-create:hover {
+            background: #e4c0b9;
+            color: black;
+        }
+        .btn-delete {
+            background: #a68072;
+            color: white;
+            display: inline-flex;
+            float: right;
+            margin: 10px;
+            padding: 6px;
+        }
+        .btn-delete:hover {
+            background: #e4c0b9;
+            color: black;
+        }
+        .btn-create>a {
+            color: white;
+        }
+        .btn-create>a:hover {
+            color: black;
+        }
+        .input-group {
+            justify-content: flex-end;
+            width: 600px;
+            float: right;
+        }
+        .header-content {
+            padding-top: 20px;
+        }
+
+        .category {
+            text-decoration: none;
+            box-shadow: inset 0 0 0 0 #a68073;
+            color: #a68073;
+            margin: 0 -.25rem;
+            padding: 0 .25rem;
+            transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+        }
+        .category:hover {
+            box-shadow: inset 100px 0 0 0 #a68073;
+            color: white;
+        }
+    </style>
+</head>
+<body style="font-family: 'Poor Story', cursive;">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="img-center text-center" style="height: 500px">
+                <span style="font-size: 100px;font-family: 'Poor Story', cursive;">My Blogs</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <table th:each="c,status: ${categories}" style="background-color: #f3f3f3; width: 100%; height: auto">
+                <tr>
+                    <td>
+                        <a th:href="@{/blogHome/category(id=${c.id})}" class="category" style="font-size: 17px; font-weight: bold " th:text="${c.category}"></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-8">
+            <div class="header-content">
+                <button type="button" class="btn-create btn"  data-bs-toggle="modal" data-bs-target="#addBlog">
+                    Create Blog
+                </button>
+                <div class="input-group" >
+                    <div class="form-outline">
+                        <input type="search" id="form1" class="form-control" />
+                    </div>
+                    <button type="button" class="btn-search btn">Search</button>
+                </div>
+            </div>
+
+            <h1 th:text="${category.category}"></h1>
+
+            <table th:each="blog,status: ${blogOfCategory}" style="background-color: #f3f3f3; width: 100%; height: auto">
+                <tr>
+                    <td>
+                        <span style="font-size: 17px; font-weight: bold " th:text="${blog.id}" hidden></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg>
+                        <span style="font-size: 25px; font-weight: bold" th:text="${blog.author}"></span>
+                        <button type="button" class="btn-delete btn"  data-bs-toggle="modal" data-bs-target="#deleteBlog" th:data-bs-id="${blog.id}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${blog.category.category}"></span>
+                        >
+                        <span style="font-size: 17px; font-weight: bold " th:text="${blog.title}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="
+                            display:inline-block;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            max-width: 90ch;"
+                              th:text="${blog.description}">
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button style="float: right; margin: 0 10px 10px 0;" type="button" class="btn-create btn">
+                            <a th:href="@{/blogHome/detail(id=${blog.id}, idCategory=${blog.category.id})}" style="text-decoration: none">See more</a>
+                        </button>
+                    </td>
+                </tr>
+                <hr>
+            </table>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</div>
+<!--Add-->
+<div class="modal fade" id="addBlog" tabindex="-1" aria-labelledby="addBlogModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addBlogModalLabel">Add new Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:object="${blog}" th:action="@{/blogHome/create}" method="post">
+                    <div class="mb-3">
+                        <table>
+                            <tr>
+                                <td>Author</td>
+                                <td><input type="text" class="form-control" th:field="${blog.author}" th:id="updateAuthor"/></td>
+                            </tr>
+                            <tr>
+                                <td>Title</td>
+                                <td><input type="text" class="form-control" th:field="${blog.title}" th:id="updateTitle"/></td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td><textarea class="form-control" th:field="${blog.description}" th:id="updateDescription" rows="4" cols="50"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <input type="submit" class="btn-create btn" value="OK">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End add-->
+<!--Delete-->
+<div class="modal fade" id="deleteBlog" tabindex="-1" aria-labelledby="deleteBlogModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteBlogModalLabel">Blog Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:object="${blog}" th:action="@{/blogHome/delete}" method="post">
+                    <div class="mb-3">
+                        <input type="number" class="form-control" th:field="${blog.id}" th:id="deleteId" hidden/>
+                        <span>Are you sure?</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <input type="submit" class="btn btn-create" value="OK">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End delete-->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script>
+    var deleteBlog = document.getElementById("deleteBlog");
+    deleteBlog.addEventListener("show.bs.modal", function (event) {
+
+        var button = event.relatedTarget;
+
+        var deleteId = button.getAttribute("data-bs-id");
+
+        var modalBodyInputId = deleteBlog.querySelector("#deleteId");
+
+        modalBodyInputId.value = deleteId;
+    });
+
+</script>
+</html>
