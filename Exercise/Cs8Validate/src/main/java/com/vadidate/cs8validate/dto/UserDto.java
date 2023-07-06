@@ -92,22 +92,33 @@ public class UserDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         UserDto userDto = (UserDto) target;
+//        Name
         if (userDto.getFirstName().isEmpty()) {
-            errors.rejectValue("firstName",null,"Cannot be empty");
+            errors.rejectValue("firstName",null,"Cannot be empty!");
         } else if (userDto.getFirstName().length() < 5 || userDto.getFirstName().length() > 45){
-            errors.rejectValue("firstName",null,"Required, minimum length 5, maximum 45 characters");
+            errors.rejectValue("firstName",null,"Required, minimum length 5, maximum 45 characters!");
         }
 
         if (userDto.getLastName().isEmpty()) {
-            errors.rejectValue("lastName",null,"Cannot be empty");
+            errors.rejectValue("lastName",null,"Cannot be empty!");
         } else if (userDto.getFirstName().length() < 5 || userDto.getFirstName().length() > 45){
-            errors.rejectValue("lastName",null,"Required, minimum length 5, maximum 45 characters");
+            errors.rejectValue("lastName",null,"Required, minimum length 5, maximum 45 characters!");
         }
-
+//        phoneNumber
         if (userDto.getPhoneNumber().isEmpty()) {
             errors.rejectValue("phoneNumber",null,"Cannot be empty");
         } else if (userDto.getPhoneNumber().matches("^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$")){
-            errors.rejectValue("phoneNumber",null,"Required, minimum length 5, maximum 45 characters");
+            errors.rejectValue("phoneNumber",null,"Required, minimum length 5, maximum 45 characters!");
+        }
+//        Age
+        if (!(userDto.getAge() >= 18)){
+            errors.rejectValue("age",null,"Age must be greater than or equal to 18!");
+        }
+//        email
+        if (userDto.getEmail().isEmpty()) {
+            errors.rejectValue("email",null,"Cannot be empty");
+        } else if (userDto.getPhoneNumber().matches("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")){
+            errors.rejectValue("email",null,"Email must be in the correct format");
         }
     }
 }
