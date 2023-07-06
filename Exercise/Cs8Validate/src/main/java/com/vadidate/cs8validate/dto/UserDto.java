@@ -9,7 +9,6 @@ public class UserDto implements Validator {
     private int id;
     private String firstName;
     private String lastName;
-    @Min(18)
     private int age;
     private String phoneNumber;
     private String email;
@@ -107,7 +106,7 @@ public class UserDto implements Validator {
 //        phoneNumber
         if (userDto.getPhoneNumber().isEmpty()) {
             errors.rejectValue("phoneNumber",null,"Cannot be empty");
-        } else if (userDto.getPhoneNumber().matches("^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$")){
+        } else if (!(userDto.getPhoneNumber().matches("^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$"))){
             errors.rejectValue("phoneNumber",null,"Required, minimum length 5, maximum 45 characters!");
         }
 //        Age
@@ -117,7 +116,7 @@ public class UserDto implements Validator {
 //        email
         if (userDto.getEmail().isEmpty()) {
             errors.rejectValue("email",null,"Cannot be empty");
-        } else if (userDto.getPhoneNumber().matches("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")){
+        } else if (!(userDto.getEmail().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))){
             errors.rejectValue("email",null,"Email must be in the correct format");
         }
     }
