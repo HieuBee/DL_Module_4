@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.springframework.org/tags/form">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,7 +7,7 @@
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <style>
         svg {
-            vertical-align: bottom;
+            vertical-align: bottom;[]
         }
 
         .img-center {
@@ -110,6 +110,10 @@
                     </table>
                 </div>
                 <div class="col-md-8">
+<!--                    <div th:class="${'alert alert-' + status + ' alert-dismissible fade show'}" role="alert">-->
+<!--                        <span th:text="${mess}"></span>-->
+<!--                        <button class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
+<!--                    </div>-->
                     <div class="header-content">
                         <button type="button" class="btn-create btn"  data-bs-toggle="modal" data-bs-target="#addBlog">
                             Create Blog
@@ -211,23 +215,32 @@
                             <table>
                                 <tr>
                                     <td>Author</td>
-                                    <td><input type="text" class="form-control" th:field="${blog.author}" th:id="updateAuthor"/></td>
+                                    <td><input type="text" class="form-control" th:field="${blog.author}"/></td>
                                 </tr>
                                 <tr>
                                     <td>Add Date</td>
-                                    <td><input type="date" class="form-control" th:field="${blog.createDate}" th:id="updateDate"/></td>
+                                    <td><input type="date" class="form-control" th:field="${blog.createDate}"/></td>
+
                                 </tr>
                                 <tr>
                                     <td>Category</td>
-                                    <td><input type="text" class="form-control" th:field="${blog.category.id}" th:id="updateCategory"/></td>
+<!--                                    <td><input type="text" class="form-control" th:field="${blog.category.id}"/></td>-->
+                                    <td>
+                                        <select name="categories" id="category"  th:field="${blog.category.id}">
+                                            <option th:each="c, status: ${categories}"
+                                                    th:value="${c.id}"
+                                                    th:text="${c.category}">
+                                            </option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Title</td>
-                                    <td><input type="text" class="form-control" th:field="${blog.title}" th:id="updateTitle"/></td>
+                                    <td><input type="text" class="form-control" th:field="${blog.title}"/></td>
                                 </tr>
                                 <tr>
                                     <td>Description</td>
-                                    <td><textarea class="form-control" th:field="${blog.description}" th:id="updateDescription" rows="4" cols="50"/></td>
+                                    <td><textarea class="form-control" th:field="${blog.description}" rows="4" cols="50"/></td>
                                 </tr>
                             </table>
                         </div>
@@ -295,5 +308,8 @@
 
     var today = year + "-" + month + "-" + day;
     document.getElementById("updateDate").value = today;
+
+    /* Alert */
+
 </script>
 </html>

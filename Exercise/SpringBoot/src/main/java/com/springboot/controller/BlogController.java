@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,18 +54,11 @@ public class BlogController {
                            ModelMap model) {
         Pageable pageable = PageRequest.of(page,5);
         Page<Blog> blogPages = service.findAllPageable(pageable, searchAuthor);
+
         model.addAttribute("blogPages", blogPages);
         model.addAttribute("searchAuthor", searchAuthor);
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("blog", new Blog());
-
-            /*@PageableDefault(page = 0, size = 5,sort = "author",direction = Sort.Direction.ASC) Pageable pageable,
-                           @RequestParam(defaultValue = "")String searchAuthor,
-                           ModelMap model) {
-        Page<Blog> blogPages = service.findAllPageable(pageable, searchAuthor);
-        model.addAttribute("blog", new Blog());
-        model.addAttribute("categories", categoryService.findAll());
-        model.addAttribute("blogPages", blogPages);*/
         return "home";
     }
 
@@ -85,8 +79,10 @@ public class BlogController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute Blog blog){
+    public String create(@ModelAttribute Blog blog, RedirectAttributes redirectAttributes){
         service.add(blog);
+        redirectAttributes.addFlashAttribute("status", "success");
+        redirectAttributes.addFlashAttribute("mess", "This is a success alert—check it out!");
         return "redirect:/blogHome";
     }
 
