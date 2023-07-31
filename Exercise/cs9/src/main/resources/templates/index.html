@@ -228,7 +228,7 @@
                         <input type="number" class="form-control" th:field="${userBook.book.id}" th:id="borrowBookId" hidden/>
                         <div class="buttons_added">
                             <input class="minus is-form" type="button" value="-">
-                            <input aria-label="quantity" class="input-qty" max="500" min="1" type="number" th:field="${userBook.quantity}" th:value="${userBook.quantity}">
+                            <input aria-label="quantity" class="input-qty" id="borrowBookQuantity" min="1" type="number" th:field="${userBook.quantity}">
                             <input class="plus is-form" type="button" value="+">
                         </div>
                         <span>Are you sure?</span>
@@ -252,17 +252,18 @@
     deleteBlog.addEventListener("show.bs.modal", function (event) {
         var button = event.relatedTarget;
 
+        var quantity = document.getElementById("borrowBookQuantity");
+
         var borrowBookIdUser = 1;
         var borrowBookId = button.getAttribute("data-bs-id");
         var borrowBookQuantity = button.getAttribute("data-bs-quantity");
+        quantity.max = borrowBookQuantity;
 
         var modalBodyInputIdUser = deleteBlog.querySelector("#borrowBookIdUser");
         var modalBodyInputId = deleteBlog.querySelector("#borrowBookId");
-        var modalBodyInputQuantity = deleteBlog.querySelector("#borrowBookQuantity");
 
         modalBodyInputIdUser.value = borrowBookIdUser;
         modalBodyInputId.value = borrowBookId;
-        modalBodyInputQuantity.value = borrowBookQuantity;
     });
 
     $('input.input-qty').each(function() {
@@ -271,7 +272,7 @@
             min = Number($this.attr('min')),
             max = Number($this.attr('max'))
         if (min == 0) {
-            var d = 0
+            var d = 0;
         } else d = min
         $(qty).on('click', function() {
             if ($(this).hasClass('minus')) {
