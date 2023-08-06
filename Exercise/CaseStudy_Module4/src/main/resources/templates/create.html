@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .img-create {
+            background-image: url("../img1.jpg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{layout::head}"></div>
+<div class="container-fluid">
+    <div class="img-create">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <form th:object="${customerDto}" th:action="@{/customer/create}" method="post">
+                    <div class="form-add" style="background: rgba(243, 243, 243, 0.6); border-radius: 30px; margin: 50px">
+                        <div class="main-form-add" style="padding: 20px">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="a" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="a" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="b" class="form-label">Email address</label>
+                                <select name="aa" id="b" class="form-select">
+                                    <option>Disabled select</option>
+                                    <option>Disabled select</option>
+                                    <option>Disabled select</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="c" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="c" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="d" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="d" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="d" class="form-label">Email address</label>
+                                <input type="radio" value="1" th:field="${customerDto.customer_render}"> Nam
+                                <input type="radio" value="0" th:field="${customerDto.customer_render}"> Nữ
+                            </div>
+                            <div class="mb-3">
+                                <label for="f" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="f" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="g" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="g" aria-describedby="emailHelp">
+                            </div>
+                            <!--<table>
+                                <tr>
+                                    <td>Customer address: </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" th:field="${customerDto.customer_address}"/></td>
+                                </tr>
+                                <br>
+                                <tr>
+                                    <td style="padding-top: 20px;">Customer birthday: </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="date" class="form-control" th:field="${customerDto.customer_birthday}"/></td>
+                                </tr>
+                                <br>
+                                <tr>
+                                    <td style="padding-top: 20px;">Customer type: </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select name="customer" id="customer"  th:field="${customerDto.customerType.customer_type_id}">
+                                            <option th:each="c, status: ${customerType}"
+                                                    th:value="${c.customer_type_id}"
+                                                    th:text="${c.customer_type_name}">
+                                            </option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <br>
+                                <tr>
+                                    <td style="padding-top: 20px;">Customer Email: </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" th:field="${customerDto.customer_email}"/></td>
+                                </tr>
+                                <br>
+                                <tr>
+                                    <td style="padding-top: 20px;">Customer id card: </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" class="form-control" th:field="${customerDto.customer_id_card}"/></td>
+                                </tr>
+                                <br>
+                                <tr>
+                                    <td style="padding-top: 20px;">Customer name </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" th:field="${customerDto.customer_name}"/></td>
+                                </tr>
+                                <br>
+                                <tr>
+                                    <td style="padding-top: 20px;">Customer number phone: </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" class="form-control" th:field="${customerDto.customer_phone}"/></td>
+                                </tr>
+                                <br>
+                                <tr>
+                                    <td style="padding-top: 20px;">Customer gender: </td>
+                                    <td>
+                                        <input type="radio" value="1" th:field="${customerDto.customer_render}"> Nam
+                                        <input type="radio" value="0" th:field="${customerDto.customer_render}"> Nữ
+
+                                    </td>
+                                </tr>
+                            </table>-->
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

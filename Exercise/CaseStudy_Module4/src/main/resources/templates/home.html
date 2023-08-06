@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FURAMA</title>
+</head>
+<body>
+<div th:replace="~{layout::head}"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="img-center text-center" style="height: 500px">
+                <span style="font-size: 100px;font-family: 'Poor Story', cursive;">FURAMA</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="padding-top: 20px">
+    <!--<div class="list-blog">-->
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8">
+            <div class="header-content" style="padding-top: 20px">
+                <button type="button" class="btn-search btn"  data-bs-toggle="modal" data-bs-target="#addBlog">
+                    <a th:href="@{/customer/create}" style="text-decoration: none">Create Customer</a>
+                </button>
+                <div class="input-group" style="width: auto; float: right">
+                    <form action="/customer" method="get">
+                        <div class="form-outline">
+                            <input style="display: inline-block; width: auto" type="search" id="form1" class="form-control" name="searchItem" />
+                            <button class="btn-search btn">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--Alert success-->
+            <div th:class="${'alert alert-' + status + ' alert-dismissible fade show'}" role="alert">
+                <span th:text="${mess}"></span>
+            </div>
+            <!--End alert success-->
+            <table th:each="customer,status: ${customerPage}" style="background-color: #f3f3f3; width: 100%; height: auto">
+                <tr>
+                    <td>
+                        <span style="font-size: 17px; font-weight: bold " th:text="${customer.customer_id}" hidden></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg>
+                        <span style="font-size: 25px; font-weight: bold" th:text="${customer.customer_name}"></span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn-delete btn"  data-bs-toggle="modal" data-bs-target="#delete"
+                                th:data-bs-id="${customer.customer_id}"
+                                th:data-bs-name="${customer.customer_name}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 25%">Birthday: </td>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${customer.customer_birthday}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Id card: </td>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${customer.customer_id_card}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gender: </td>
+                    <td style="font-size: 17px;font-style: italic; font-weight: bold "  th:switch="${customer.customer_render}">
+                        <span th:case="1">Nam</span>
+                        <span th:case="0">Nữ</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phone: </td>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${customer.customer_phone}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email: </td>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${customer.customer_email}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${customer.customer_address}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Customer Type: </td>
+                    <td>
+                        <span style="font-size: 17px;font-style: italic; font-weight: bold " th:text="${customer.customerType.customer_type_name}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button style="float: right; margin: 0 10px 10px 0;" type="button" class="btn-search btn">
+                            <a th:href="@{/customer/detail(id=${customer.customer_id})}" style="text-decoration: none">See more</a>
+                        </button>
+                    </td>
+                </tr>
+                <hr>
+            </table>
+            <!-- Pagination -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" th:if="${customerPage.hasPrevious()}" th:href="@{/customer(page=${customerPage.number-1},searchItem=${searchItem})}">Previous</a></li>
+                    <li class="page-item"><a class="page-link" th:text="${customerPage.number+1}"></a></li>
+                    <li class="page-item"><a class="page-link" >/</a></li>
+                    <li class="page-item"><a class="page-link" th:text="${customerPage.totalPages}"></a></li>
+                    <li class="page-item"><a class="page-link" th:if="${customerPage.hasNext()}" th:href="@{/customer(page=${customerPage.number+1},searchItem=${searchItem})}">Next</a></li>
+                </ul>
+            </nav>
+            <!-- End Pagination -->
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</div>
+
+<!--Delete-->
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:object="${customer}" th:action="@{/customer/delete}" method="post">
+                    <div class="mb-3">
+                        <input type="number" class="form-control" th:field="${customer.customer_id}" th:id="deleteId" hidden/>
+                        <span>Do you want to remove customer: </span>
+                        <input style="cursor: not-allowed" type="text" class="form-control" th:id="deleteName"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <input type="submit" class="btn btn-create" value="OK">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End delete-->
+</div>
+</body>
+<script>
+    var deleteCustomer = document.getElementById("delete");
+    deleteCustomer.addEventListener("show.bs.modal", function (event) {
+
+        var button = event.relatedTarget;
+
+        var deleteId = button.getAttribute("data-bs-id");
+        var deleteName = button.getAttribute("data-bs-name");
+
+        var modalId = deleteCustomer.querySelector("#deleteId");
+        var modalName = deleteCustomer.querySelector("#deleteName");
+
+        modalId.value = deleteId;
+        modalName.value = deleteName;
+    });
+</script>
+</html>

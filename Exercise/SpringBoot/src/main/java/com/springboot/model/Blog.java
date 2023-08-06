@@ -1,9 +1,13 @@
 package com.springboot.model;
 
+import com.springboot.dto.BlogDto;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
 import javax.persistence.*;
 
 @Entity
-public class Blog {
+public class Blog implements Validator {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -75,5 +79,21 @@ public class Blog {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        Blog blog = (Blog) target;
+//        Name
+        if (blog.getAuthor().isEmpty()) {
+            errors.rejectValue("author",null,"Cannot be empty!");
+        } else if (blog.getAuthor().length() < 5 || blog.getAuthor().length() > 45){
+            errors.rejectValue("author",null,"Required, minimum length 5, maximum 45 characters!");
+        }
     }
 }

@@ -38,18 +38,18 @@
             background: #e4c0b9;
             color: black;
         }
-        .btn-delete {
-            background: #a68072;
-            color: white;
-            display: inline-flex;
-            float: right;
-            margin: 10px;
-            padding: 6px;
-        }
-        .btn-delete:hover {
-            background: #e4c0b9;
-            color: black;
-        }
+            .btn-delete {
+                background: #a68072;
+                color: white;
+                display: inline-flex;
+                float: right;
+                margin: 10px;
+                padding: 6px;
+            }
+            .btn-delete:hover {
+                background: #e4c0b9;
+                color: black;
+            }
         .btn-create>a {
             color: white;
         }
@@ -118,7 +118,7 @@
                         <button type="button" class="btn-create btn"  data-bs-toggle="modal" data-bs-target="#addBlog">
                             Create Blog
                         </button>
-                        <div class="input-group" >
+                        <div class="input-group">
                             <form action="/blogHome" method="get">
                                 <div class="form-outline">
                                     <input style="display: inline-block; width: auto" type="search" id="form1" class="form-control" name="searchAuthor" th:value="${searchAuthor}" />
@@ -216,6 +216,7 @@
                                 <tr>
                                     <td>Author</td>
                                     <td><input type="text" class="form-control" th:field="${blog.author}"/></td>
+                                    <small style="color: red" th:if="${#fields.hasErrors('author')}" th:errors ="*{author}"></small><br>
                                 </tr>
                                 <tr>
                                     <td>Add Date</td>

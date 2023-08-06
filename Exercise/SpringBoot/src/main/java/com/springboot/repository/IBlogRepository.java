@@ -16,6 +16,6 @@ public interface IBlogRepository extends JpaRepository<Blog, Integer> {
     @Query(value = " select * from blog left join category on blog.category_id = category.id where blog.category_id = :id",nativeQuery = true)
     List<Blog> blogOfCategory(@Param("id") String id);
 
-    @Query(value = "select * from blog left join category on blog.category_id = category.id where blog.author like :author order by blog.create_date",nativeQuery = true)
+    @Query(value = "select * from blog left join category on blog.category_id = category.id where blog.author like :author or blog.title like :author or category.category like :author order by blog.create_date",nativeQuery = true)
     Page<Blog> findAllPageable(Pageable pageable, @Param("author") String author);
 }
